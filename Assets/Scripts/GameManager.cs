@@ -80,12 +80,4 @@ public class GameManager : MonoBehaviour
             gameObjectLevel[3].SetActive(true);
         }
     }
-    // stworzyc zmienna GameObject brickPrefabBrick
-        // stworzyć zmienna bool isLevelDone1, isLevelDone2, isLevelDone3
-        // stworzyć funkcję void LevelController
-        // w pętli przeleciec przez każdy prefab
-        // w pętli dać if'a ktory sprawdza czy dlugosc tablicy prefabow jest mniejsza od 0
-        // jezeli bedzie mniejsza to isLevelDone1 = true;
-        // GameManager musi wyłączyć level1 a włączyć level2
-
-    }
+}
