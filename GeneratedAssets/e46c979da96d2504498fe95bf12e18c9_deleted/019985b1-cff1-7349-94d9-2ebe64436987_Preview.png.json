@@ -1,0 +1,11 @@
+{
+    "asset": "e46c979da96d2504498fe95bf12e18c9",
+    "fileName": "019985b1-cff1-7349-94d9-2ebe64436987_Preview.png",
+    "prompt": "island water",
+    "negativePrompt": "",
+    "model": "575ecf67-4425-4939-97b9-5e138b8ee234",
+    "modelName": "Unity Texture2D",
+    "customSeed": 829697571,
+    "w3CTraceId": "3d281a7e23e690d222d26525424854af",
+    "refinementMode": "Generation"
+}
