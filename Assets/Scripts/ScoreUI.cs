@@ -15,19 +15,15 @@ public class ScoreUI : MonoBehaviour
         }
         instance = this;
     }
-
     private void Update()
     {
         ShowScore();
     }
-
     public void ShowScore()
     {
         int currentScore = ScoreManager.instance.totalScore;
         score.SetText(currentScore.ToString());
-
         int currentHighScore = ScoreManager.instance.totalHighScore;
         highScore.SetText(currentHighScore.ToString());
     }
-
 }

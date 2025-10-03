@@ -11,7 +11,6 @@ public class textController : MonoBehaviour
 {
     [SerializeField] private Canvas myCanva;
     public static bool isGamePause = false;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

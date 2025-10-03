@@ -5,7 +5,6 @@ public class brick : MonoBehaviour
 {
     [SerializeField] private AudioClip soundBrick;
     public GameManager gameManager;
-
     private void Awake()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -33,7 +32,6 @@ public class brick : MonoBehaviour
         {
             ScoreManager.instance.AddScore(100);
         }
-        
         if (gameManager.isLevelDone1)
         {
             GameManager.instance.BrickCountLevel1();
@@ -46,12 +44,9 @@ public class brick : MonoBehaviour
         {
             GameManager.instance.BrickCountLevel3();
         }
-
     }
-
     void OnCollisionExit2D(Collision2D collisionExit)
     {
         Destroy(gameObject);
     }
-
 }

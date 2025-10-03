@@ -12,7 +12,6 @@ public class SoundManager : MonoBehaviour
             instance = this;
         }
     }
-
     public void PlaySound(AudioClip audioClip, Transform transform, float volume)
     {
         //spawn gameObject
@@ -28,6 +27,4 @@ public class SoundManager : MonoBehaviour
         //destroy object after clip end
         Destroy(audioSource.gameObject, clipLenght);
     }
-
-
 }
