@@ -15,23 +15,19 @@ public class ball : MonoBehaviour
     private bool isBallRun = false;
     private float angleY;
     private float angleX;
-
     private Rigidbody2D rb;
     public float speed = 50f;
-
+    private float maxBounceAngle = 75f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         positionLeftGameObject = Vector2.zero;
         positionRightGameObject = Vector2.zero;
     }
-
     void Update()
     {
         MoveBall();
-        
     }
-
     private void MoveBall()
     {
         if (isBallStick)
@@ -40,7 +36,6 @@ public class ball : MonoBehaviour
             Vector2 positionBall = new Vector2(positionPaddle.x, positionPaddle.y + 0.30f);
             ballGameObject.transform.position = positionBall;
         }
-
         if (isBallStick && Input.GetKeyDown(KeyCode.Space))
         {
             float randomDirectionY = Random.Range(1f, 1f);
@@ -52,34 +47,22 @@ public class ball : MonoBehaviour
             isBallRun = true;
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collison2D)
     {
-        if (collison2D.gameObject.CompareTag("Paddle")) {
-            FixMovementBall();   
-        }
-    }
-    private void FixMovementBall()
-    {
-        if (isBallRun)
+        PlayerMovement playerMovement = collison2D.gameObject.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
         {
-            Vector2 ballPosition = ballPrefab.transform.position;
-            positionLeftGameObject = new Vector2(leftSidePaddle.transform.position.x, leftSidePaddle.transform.position.y);
-            positionRightGameObject = new Vector2(rightSidePaddle.transform.position.x, rightSidePaddle.transform.position.y);
-            Vector2 result = positionRightGameObject + positionLeftGameObject;
-            angleY = Random.Range(1.25f, 2f);
-            angleX = Random.Range(-1.25f, 1.25f);
-            Vector2 direction = new Vector2(angleX, angleY);
+            Debug.Log("Zdezenie z komponentem Paddle");
+            Vector3 paddlePosition = this.transform.position;
+            Vector2 concactPoint = collison2D.GetContact(0).point;
+            float offset = paddlePosition.x - concactPoint.x;
+            float width = collison2D.otherCollider.bounds.size.x / 2;
+            float currentAngle = Vector2.SignedAngle(Vector2.up, rb.linearVelocity);
+            float bounceAngle = (offset / width) * maxBounceAngle;
+            float newAngle = Mathf.Clamp(currentAngle + bounceAngle, -maxBounceAngle, maxBounceAngle);
 
-            if (ballPosition.x > (result.x / 2))
-            {
-                rb.linearVelocity = direction.normalized * speed;
-            }
-            else
-            {
-                rb.linearVelocity = direction.normalized * speed;
-            }
+            Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+            rb.linearVelocity = rotation * Vector2.up * rb.linearVelocity.magnitude;
         }
-        //isBallRun = false;
     }
 }

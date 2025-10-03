@@ -13,10 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isLevelDone1 = true;
     public bool isLevelDone2 = false;
     public bool isLevelDone3 = false;
-    private int brickCountLevel1;
-    private int brickCountLevel2;
-    private int brickCountLevel3;
-
+    private int brickCountLevel1, brickCountLevel2, brickCountLevel3;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -28,7 +25,6 @@ public class GameManager : MonoBehaviour
         blackCanva.enabled = true;
         blackCanvaText.enabled = false;
     }
-
     private void Start()
     {
         brickCountLevel1 = gameObjectPrefabBrickLevel01.Length;
@@ -36,7 +32,6 @@ public class GameManager : MonoBehaviour
         brickCountLevel3 = gameObjectPrefabBrickLevel03.Length;
         isLevelDone1 = true;
     }
-
     private void LevelOff()
     {
         for (int i = 1; i < gameObjectLevel.Length; i++)
@@ -44,8 +39,6 @@ public class GameManager : MonoBehaviour
             gameObjectLevel[i].SetActive(false);
         }
     }
-
-
     public void BrickCountLevel1()
     {
         brickCountLevel1--;
@@ -69,7 +62,6 @@ public class GameManager : MonoBehaviour
             isLevelDone3 = true;
         }
     }
-
     public void BrickCountLevel3()
     {
         brickCountLevel3--;
